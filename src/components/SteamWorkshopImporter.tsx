@@ -35,7 +35,27 @@ const SteamWorkshopImporter: React.FC<SteamWorkshopImporterProps> = ({ onImport,
     {
       url: 'https://cors.platformvm.com/',
       processResponse: (response: any) => response.data
-    }
+    },
+    {
+      url: 'https://cors.bridged.cc/',
+      processResponse: (response: any) => response.data
+    },
+    {
+      url: 'https://cors-anywhere.herokuapp.com/',
+      processResponse: (response: any) => response.data
+    },
+    {
+      url: 'https://api.proxy.lol/v1/proxy?url=',
+      processResponse: (response: any) => response.data
+    },
+    {
+      url: 'https://www.corsproxy.eu/?url=',
+      processResponse: (response: any) => response.data
+    },
+    {
+      url: 'https://cors.io/?url=',
+      processResponse: (response: any) => response.data
+    },
   ];
 
   const normalizeUrl = (inputUrl: string): string => {
@@ -72,7 +92,7 @@ const SteamWorkshopImporter: React.FC<SteamWorkshopImporterProps> = ({ onImport,
 
   const fetchWithProxy = async (normalizedUrl: string, proxyIndex: number): Promise<string> => {
     if (proxyIndex >= corsProxies.length) {
-      throw new Error('All proxies failed. Please try again later.');
+      throw new Error('All proxies failed to fetch the content. Please try again later.');
     }
 
     const proxy = corsProxies[proxyIndex];
